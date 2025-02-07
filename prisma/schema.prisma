@@ -16,7 +16,7 @@ model Student {
   idno        Int
   firstname   String
   lastname    String
-  middlename  String
+  middlename  String?
   course      String
   yearlevel   Int
   email       String

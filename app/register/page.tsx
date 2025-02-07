@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { getStudents, addStudent } from "@/api/prisma-db";
-import RegisterButton from "@/components/RegisterButton";
+import RegisterForm from "@/components/RegisterForm";
 import prisma from "@/app/db";
 type Student = {
   idno: number;
@@ -30,24 +30,14 @@ const studentData = {
   password: "password",
 };
 
+// addStudent(studentData);
+
   const student = await prisma.student.findMany()
 
   console.log("student", student);
   return (
     <div className="flex flex-col bg-gray-900 w-screen h-screen justify-center items-center text-white">
-        <form className="flex flex-col gap-4 w-1/6">
-        
-          <input id="idno" className="input-register" type="text" placeholder="IDNo" />
-          <input id="lastname" className="input-register" type="text" placeholder="Last Name" />
-          <input id="firstname" className="input-register" type="text" placeholder="First Name" />
-          <input id="middlename" className="input-register" type="text" placeholder="Middle Name" />
-          <input id="course" className="input-register" type="text" placeholder="Course" />
-          <input id="yearlevel" className="input-register" type="text" placeholder="Year Level" />
-          <input id="email" className="input-register" type="text" placeholder="Email Address" />
-          <input id="username" className="input-register" type="text" placeholder="Username" />
-          <input id="password" className="input-register" type="password" placeholder="Password" />
-          <RegisterButton/>
-        </form>
+          <RegisterForm/>
         
     </div>
   );

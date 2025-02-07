@@ -7,7 +7,7 @@ const TextField = ({label}: {label: string}) => {
   return (
     <StyledWrapper>
       <div className="wave-group">
-        <input required type="text" className="input" />
+        <input required type="text" className="input text-white" />
         <span className="bar" />
         <label className="label">
         {label.split('').map((char, index) => (
