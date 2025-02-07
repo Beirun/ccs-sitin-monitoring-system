@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { toast } from "sonner"
 
 const RegisterForm = () => {
   const [idno, setIdno] = useState("");
@@ -33,7 +34,17 @@ const RegisterForm = () => {
       });
 
       if (response.ok) {
-        console.log("Successfully added student");
+        toast.success("Successfully added student");
+        setIdno("");
+        setFirstname("");
+        setLastname("");
+        setMiddlename("");
+        setCourse("");
+        setYearlevel("");
+        setEmail("");
+        setUsername("");
+        setPassword("");
+
       } else {
         console.error("Error adding student:", response.statusText);
       }
@@ -41,6 +52,9 @@ const RegisterForm = () => {
       console.error("Error adding student:", error);
     }
   };
+  const courses = ["BSIT", "BSCS", "BSHM", "BSBA", "BSCPE"];
+
+  const yearLevels = ["1", "2", "3", "4"];
 
   return (
     <div className="flex flex-col gap-4 w-1/6 p-4 bg-gray-700 rounded-lg">
@@ -76,22 +90,32 @@ const RegisterForm = () => {
         value={middlename}
         onChange={(e) => setMiddlename(e.target.value)}
       />
-      <input
+      <select
         id="course"
         className="input-register"
-        type="text"
-        placeholder="Course"
         value={course}
         onChange={(e) => setCourse(e.target.value)}
-      />
-      <input
+      >
+        <option className="bg-gray-700" value="">Select Course</option>
+        {courses.map((courseOption) => (
+          <option className="bg-gray-700" key={courseOption} value={courseOption}>
+            {courseOption}
+          </option>
+        ))}
+      </select>
+      <select
         id="yearlevel"
         className="input-register"
-        type="text"
-        placeholder="Year Level"
         value={yearlevel}
         onChange={(e) => setYearlevel(e.target.value)}
-      />
+      >
+        <option className="bg-gray-700" value="">Select Year Level</option>
+        {yearLevels.map((yearLevelOption) => (
+          <option className="bg-gray-700" key={yearLevelOption} value={yearLevelOption}>
+            {yearLevelOption}
+          </option>
+        ))}
+      </select>
       <input
         id="email"
         className="input-register"
